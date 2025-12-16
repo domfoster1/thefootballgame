@@ -8,3 +8,14 @@ body {
 h1 {
     font-family: 'Oswald', sans-serif;
 }
+
+.quiz-container {
+            background: #000;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+            color: #fff;
+        }
