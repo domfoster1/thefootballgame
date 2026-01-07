@@ -32,3 +32,18 @@ h1 {
             box-sizing: border-box;
             color: #fff;
            }
+
+#submit {
+    margin: 0 auto;
+    width : 20%;
+    text-align: center;
+    background-color: rgb(155, 188, 90);
+    color: #000000;
+    font-size: 1rem;
+
+
+}
+
+#submit:hover {
+    background-color: rgb(9, 118, 18);
+}
