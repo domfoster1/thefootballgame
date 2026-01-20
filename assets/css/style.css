@@ -26,22 +26,38 @@ h1 {
             background: #000000;
             border-radius: 12px;
             width: 90%;
-            max-width: 600px;
+            max-width: 700px;
             padding: 20px;
             text-align: center;
             box-sizing: border-box;
             color: #fff;
            }
 
+#question {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+
+.answer-button {
+    margin: 10px;
+    max-width: fit-content;
+    text-align: center;
+    background-color: white;
+    color: #000000;
+    font-size: 1.5rem;
+}
+
 #submit {
-    margin: 0 auto;
+    margin: 10px;
     width : 20%;
     text-align: center;
     background-color: rgb(155, 188, 90);
     color: #000000;
-    font-size: 1rem;
-
-
+    font-size: 1.25rem;
 }
 
 #submit:hover {
