@@ -51,6 +51,10 @@ h1 {
     font-size: 1.5rem;
 }
 
+.answer-button:hover {
+    background-color: red;
+}
+
 #submit {
     margin: 10px;
     width : 20%;
