@@ -88,6 +88,53 @@ h1 {
     font-family: 'Oswald', sans-serif;
 }
 
+/*Final screen and reset button*/
+.final-screen {
+    background: #000000;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 700px;
+    padding: 40px 20px;
+    text-align: center;
+    box-sizing: border-box;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.final-screen h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+    margin: 0 0 10px 0;
+}
+
+.final-screen p {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.final-score-text {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 30px 0;
+    color: rgb(155, 188, 90);
+}
+
+.reset-button-display {
+    margin: 10px;
+    max-width: fit-content;
+    text-align: center;
+    background-color: rgb(155, 188, 90);
+    color: #000000;
+    font-size: 1.25rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reset-button-display:hover {
+    background-color: rgb(9, 118, 18);
+}
 
 /*Media Queries*/
 

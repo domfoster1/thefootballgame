@@ -181,11 +181,33 @@ submitButton.addEventListener("click", function () {
     if (questionIndex < myQuestions.length) {
     showQuestion();
     } else {
-        alert("Quiz finished!\nYour score: " + score + " / " + myQuestions.length);
-    submitButton.style.display = "none";
-
+        document.querySelector('.quiz-container').style.display = 'none';
+        const finalScreen = document.getElementById('final-screen');
+        const finalScoreText = document.getElementById('final-score');
+        finalScoreText.textContent = `Your Score: ${score} / ${myQuestions.length}`;
+        finalScreen.style.display = 'block';
     }
 });
 
 showQuestion()
+
+// Reset button functionality
+const resetButton = document.getElementById('reset-button');
+resetButton.addEventListener('click', function() {
+    // Reset variables
+    questionIndex = 0;
+    score = 0;
+    userAnswer = null;
+    
+    // Show quiz container and hide final screen
+    document.querySelector('.quiz-container').style.display = 'block';
+    document.getElementById('final-screen').style.display = 'none';
+    
+    // Reset score display
+    scoreDisplay.textContent = `Score: ${score} / ${myQuestions.length}`;
+    
+    // Load first question
+    showQuestion();
+});
+
 
