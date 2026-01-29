@@ -179,9 +179,8 @@ submitButton.addEventListener("click", function () {
     if (questionIndex < myQuestions.length) {
     showQuestion();
     } else {
-        questionElement.textContent = "Quiz Finished!";
-        resultElement.textContent = "Final score: " + score + " / " + myQuestions.length;
-        submitButton.style.display = "none";
+        alert("Quiz finished!\nYour score: " + score + " / " + myQuestions.length);
+    submitButton.style.display = "none";
 
     }
 });
