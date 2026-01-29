@@ -1,3 +1,5 @@
+
+
 /*Google fonts import*/
 
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
@@ -12,7 +14,7 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    justify-content: top-center; 
+    justify-content: flex-start;
     align-items: center;     
     
 }
@@ -57,7 +59,7 @@ h1 {
 
 #submit {
     margin: 10px;
-    width : 20%;
+    max-width: fit-content;
     text-align: center;
     background-color: rgb(155, 188, 90);
     color: #000000;
@@ -66,4 +68,36 @@ h1 {
 
 #submit:hover {
     background-color: rgb(9, 118, 18);
+}
+
+#result {
+
+}
+
+
+/*Media Queries*/
+
+/*Media Queries for all size mobiles*/
+
+@media screen and (max-width:425px) {
+    
+    h1 {
+        text-align: center;
+        justify-content: center;
+        
+    }
+
+}
+
+/*Media queries for tablets*/
+
+@media screen and (width:768px) {
+
+    h1 {
+        line-height: 4;
+    }
+
+    .quiz-container {
+        margin-top: 5px;
+    }
 }
