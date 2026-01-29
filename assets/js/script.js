@@ -126,6 +126,7 @@ const questionElement = document.getElementById("question");
 const answerButtons = document.querySelectorAll(".answer-button");
 const submitButton = document.getElementById("submit")
 const resultElement = document.getElementById("result")
+const scoreDisplay = document.getElementById("score-display")
 
 let questionIndex = 0;
 let score = 0;
@@ -175,6 +176,7 @@ submitButton.addEventListener("click", function () {
     }
 
     questionIndex++;
+    scoreDisplay.textContent = `Score: ${score} / ${myQuestions.length}`;
 
     if (questionIndex < myQuestions.length) {
     showQuestion();
