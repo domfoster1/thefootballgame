@@ -121,3 +121,33 @@ const myQuestions = [
         correctAnswer: "a"
     },
 ]
+
+const questionElement = document.getElementById("question");
+const answerButtons = document.querySelectorAll(".answerbutton");
+const submitButton = document.getElementById("submit")
+
+let questionIndex = 0;
+let score = 0;
+let userAnswer = null;
+
+//function to load questions and answers
+
+function showQuestion() {
+    let current = myQuestions[questionIndex];
+
+    questionElement.textContent = current.question;
+
+    let answers = Object.values(current.answers);
+    let keys = Objext.keys(current.answers);
+
+    for (let i = 0; i < answerButtons.length; i++) {
+        answerButtons[i].textContent = answers[i];
+        answerButtons[i].dataset.answer = keys[i];
+        answerButtons[i].classList.remove("selected");
+
+    }
+    
+    userAnswer = null;
+}
+
+

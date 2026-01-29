@@ -53,9 +53,19 @@ h1 {
     font-size: 1.5rem;
 }
 
+.selected {
+    background-color: #4caf50;
+    color: white;
+}
+
 .answer-button:hover {
     background-color: red;
 }
+
+.answer-button:not(.selected):hover {
+    background-color: red;
+}
+
 
 #submit {
     margin: 10px;
@@ -68,10 +78,6 @@ h1 {
 
 #submit:hover {
     background-color: rgb(9, 118, 18);
-}
-
-#result {
-
 }
 
 
@@ -89,13 +95,3 @@ h1 {
 
 }
 
-/*Media queries for tablets*/
-
-@media screen and (width:768px) {
-
-    h1 {
-        line-height: 4;
-    }
-
-    
-}
