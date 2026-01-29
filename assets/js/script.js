@@ -151,3 +151,15 @@ function showQuestion() {
 }
 
 
+// select answer
+for (let i = 0; i < answerButtons.length; i++) {
+    answerButtons[i].addEventListener("click", function () {
+        for (let j = 0; j < answerButtons.length; j++) {
+            answerButtons[j].classList.remove("selected");
+        }
+        this.classList.add("selected");
+        userAnswer = this.dataset.answer;
+    });
+}
+
+
