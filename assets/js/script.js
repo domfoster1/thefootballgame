@@ -133,7 +133,7 @@ let score = 0;
 let userAnswer = null;
 
 //function to load questions and answers
-
+//to do select questions at random from array
 function showQuestion() {
     let current = myQuestions[questionIndex];
 
