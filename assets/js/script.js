@@ -54,106 +54,88 @@ const myQuestions = [
   { question: "What is the term for restarting play after the ball has gone out of bounds?", answers: { a: "Throw-in", b: "Corner", c: "Goal kick", d: "Free kick" }, correctAnswer: "a" },
 ];
 
-
-const questionElement = document.getElementById("question");
-const answerButtons = document.querySelectorAll(".answer-button");
-const submitButton = document.getElementById("submit")
-const resultElement = document.getElementById("result")
-const scoreDisplay = document.getElementById("score-display")
-
+let currentQuestions = getRandomQuestions(10);
 let questionIndex = 0;
 let score = 0;
 let userAnswer = null;
 
-//function to load questions and answers
-//to do select questions at random from array
-function showQuestion() {
-    let current = myQuestions[questionIndex];
-
-    questionElement.textContent = current.question;
-
-    let answers = Object.values(current.answers);
-    let keys = Object.keys(current.answers);
-
-    for (let i = 0; i < answerButtons.length; i++) {
-        answerButtons[i].textContent = answers[i];
-        answerButtons[i].dataset.answer = keys[i];
-        answerButtons[i].classList.remove("selected");
-
-    }
-    
-    userAnswer = null;
-}
-
-
-// selected answer
-for (let i = 0; i < answerButtons.length; i++) {
-    answerButtons[i].addEventListener("click", function () {
-        for (let j = 0; j < answerButtons.length; j++) {
-            answerButtons[j].classList.remove("selected");
-        }
-        this.classList.add("selected");
-        userAnswer = this.dataset.answer;
-    });
-}
-
-//submit answer
-submitButton.addEventListener("click", function () {
-    if (userAnswer === null) {
-        alert("Please select an answer!");
-        return;
-    }
-
-    if(userAnswer === myQuestions[questionIndex].correctAnswer) {
-        score ++;
-    }
-
-    questionIndex++;
-    scoreDisplay.textContent = `Score: ${score} / ${myQuestions.length}`;
-
-    if (questionIndex < myQuestions.length) {
-    showQuestion();
-    } else {
-    document.querySelector('.quiz-container').style.display = 'none';
-    showFinalScreen(score, myQuestions.length);
-}
-
-});
-
+const questionElement = document.getElementById("question");
+const answerButtons = document.querySelectorAll(".answer-button");
+const submitButton = document.getElementById("submit");
+const scoreDisplay = document.getElementById("score-display");
+const quizContainer = document.querySelector(".quiz-container");
 const finalScreen = document.getElementById("final-screen");
 const finalScoreEl = document.getElementById("final-score");
 const headingEl = finalScreen.querySelector("h2");
+const resetButton = document.getElementById("reset-button");
 
-function showFinalScreen(score, total) {
-  if (score < 5) {
-    headingEl.textContent = "Better luck next time! ";
-  } else {
-    headingEl.textContent = " Congratulations! ";
+function getRandomQuestions(amount) {
+  return [...myQuestions].sort(() => Math.random() - 0.5).slice(0, amount);
+}
+
+function showQuestion() {
+  const current = currentQuestions[questionIndex];
+  questionElement.textContent = current.question;
+  const answers = Object.values(current.answers);
+  const keys = Object.keys(current.answers);
+
+  answerButtons.forEach((btn, i) => {
+    btn.textContent = answers[i];
+    btn.dataset.answer = keys[i];
+    btn.classList.remove("selected");
+  });
+
+  userAnswer = null;
+}
+
+answerButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    answerButtons.forEach(b => b.classList.remove("selected"));
+    btn.classList.add("selected");
+    userAnswer = btn.dataset.answer;
+  });
+});
+
+submitButton.addEventListener("click", () => {
+  if (!userAnswer) {
+    alert("Please select an answer!");
+    return;
   }
 
-  finalScoreEl.textContent = `Your Score: ${score} / ${total}`;
+  if (userAnswer === currentQuestions[questionIndex].correctAnswer) {
+    score++;
+  }
+
+  questionIndex++;
+  scoreDisplay.textContent = `Score: ${score} / ${currentQuestions.length}`;
+
+  if (questionIndex < currentQuestions.length) {
+    showQuestion();
+  } else {
+    quizContainer.style.display = "none";
+    showFinalScreen();
+  }
+});
+
+function showFinalScreen() {
+  headingEl.textContent = score < 5 ? "Better luck next time!" : "🎉 Congratulations! 🎉";
+  finalScoreEl.textContent = `Your Score: ${score} / ${currentQuestions.length}`;
   finalScreen.style.display = "block";
 }
 
-showQuestion()
+resetButton.addEventListener("click", () => {
+  questionIndex = 0;
+  score = 0;
+  userAnswer = null;
+  currentQuestions = getRandomQuestions(10);
 
-// Reset button functionality
-const resetButton = document.getElementById('reset-button');
-resetButton.addEventListener('click', function() {
-    
-    questionIndex = 0;
-    score = 0;
-    userAnswer = null;
-    
-    
-    document.querySelector('.quiz-container').style.display = 'block';
-    document.getElementById('final-screen').style.display = 'none';
-    
-    
-    scoreDisplay.textContent = `Score: ${score} / ${myQuestions.length}`;
-    
-    
-    showQuestion();
+  quizContainer.style.display = "block";
+  finalScreen.style.display = "none";
+  scoreDisplay.textContent = `Score: ${score} / ${currentQuestions.length}`;
+  showQuestion();
 });
+
+showQuestion();
+
 
 
