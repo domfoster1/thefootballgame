@@ -1,3 +1,4 @@
+// Quiz questions array
 const myQuestions = [
   { question: "Which country won the 2018 FIFA World Cup?", answers: { a: "Brazil", b: "Germany", c: "France", d: "Argentina" }, correctAnswer: "c" },
   { question: "How many players are on a football team on the field at one time?", answers: { a: "9", b: "10", c: "11", d: "12" }, correctAnswer: "c" },
@@ -54,11 +55,13 @@ const myQuestions = [
   { question: "What is the term for restarting play after the ball has gone out of bounds?", answers: { a: "Throw-in", b: "Corner", c: "Goal kick", d: "Free kick" }, correctAnswer: "a" },
 ];
 
+// Quiz state variables
 let currentQuestions = getRandomQuestions(10);
 let questionIndex = 0;
 let score = 0;
 let userAnswer = null;
 
+// DOM elements
 const questionElement = document.getElementById("question");
 const answerButtons = document.querySelectorAll(".answer-button");
 const submitButton = document.getElementById("submit");
@@ -69,10 +72,12 @@ const finalScoreEl = document.getElementById("final-score");
 const headingEl = finalScreen.querySelector("h2");
 const resetButton = document.getElementById("reset-button");
 
+// Function to get random questions
 function getRandomQuestions(amount) {
   return [...myQuestions].sort(() => Math.random() - 0.5).slice(0, amount);
 }
 
+// Function to display current question
 function showQuestion() {
   const current = currentQuestions[questionIndex];
   questionElement.textContent = current.question;
@@ -88,6 +93,7 @@ function showQuestion() {
   userAnswer = null;
 }
 
+// Answer button selection
 answerButtons.forEach(btn => {
   btn.addEventListener("click", () => {
     answerButtons.forEach(b => b.classList.remove("selected"));
@@ -96,6 +102,7 @@ answerButtons.forEach(btn => {
   });
 });
 
+// Submit answer
 submitButton.addEventListener("click", () => {
   if (!userAnswer) {
     alert("Please select an answer!");
@@ -117,12 +124,35 @@ submitButton.addEventListener("click", () => {
   }
 });
 
+// Falling footballs effect
+function launchFootballs(count = 50) {
+    const overlay = document.getElementById("football-overlay");
+
+    for (let i = 0; i < count; i++) {
+        const ball = document.createElement("div");
+        ball.classList.add("football");
+        ball.textContent = "⚽";
+
+        ball.style.left = Math.random() * 100 + "vw";
+        ball.style.animationDuration = 2 + Math.random() * 3 + "s";
+        ball.style.fontSize = 1.5 + Math.random() * 1.5 + "rem";
+
+        overlay.appendChild(ball);
+
+        // cleanup
+        setTimeout(() => ball.remove(), 5000);
+    }
+}
+
+// Final screen display
 function showFinalScreen() {
+  launchFootballs(50);
   headingEl.textContent = score < 5 ? "Better luck next time!" : "🎉 Congratulations! 🎉";
   finalScoreEl.textContent = `Your Score: ${score} / ${currentQuestions.length}`;
   finalScreen.style.display = "block";
 }
 
+//Reset quiz
 resetButton.addEventListener("click", () => {
   questionIndex = 0;
   score = 0;
