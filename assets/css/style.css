@@ -69,11 +69,18 @@ h1 {
 
 .answer-button:hover {
     background-color: red;
+
+}
+
+.answer-button:active {
+    transform: scale(0.97);
 }
 
 .answer-button:not(.selected):hover {
     background-color: red;
 }
+
+
 
 /*Submit button*/
 #submit {
